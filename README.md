@@ -1,6 +1,9 @@
 ## fabric-order-auto-complete
 
-원단 주문 메시지 자동화
+원단 관리 및 주문 메시지 자동화
+
+명칭 변경 : 
+<b>FMS (Fabric Management System)</b>
 
 ***
 ### 1차 개발 (2023년 11월 ~)

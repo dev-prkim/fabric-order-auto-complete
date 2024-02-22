@@ -1,7 +1,20 @@
 server:
   port: 8081
+
 spring:
   data:
-    redis:
-      host: localhost
-      port: 6379
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      database: fms
+      username: black
+      password: 1111
+      authentication-database: admin
+      auto-index-creation: true
+  r2dbc:
+    initialization-mode: always
+
+logging:
+  level:
+    org.springframework.data.mongodb.core.ReactiveMongoTemplate: DEBUG
+    io.r2dbc: DEBUG

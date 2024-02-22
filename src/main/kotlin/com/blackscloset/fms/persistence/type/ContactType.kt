@@ -1,4 +1,4 @@
-package com.blackscloset.fabricorderautocomplete.model.type
+package com.blackscloset.fms.persistence.type
 
 enum class ContactType(val code: String) {
     SMS("sms"),

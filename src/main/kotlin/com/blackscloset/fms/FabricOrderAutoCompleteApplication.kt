@@ -1,4 +1,4 @@
-package com.blackscloset.fabricorderautocomplete
+package com.blackscloset.fms
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
