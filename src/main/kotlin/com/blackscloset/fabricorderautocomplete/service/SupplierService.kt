@@ -7,8 +7,11 @@ import reactor.core.publisher.Mono
 
 @Service
 class SupplierService(private val supplierRepository: SupplierRepository) {
-    fun findAll() = supplierRepository.findAll()
+    fun getAll(): Mono<List<String>> {
+        return supplierRepository.findAll()
+    }
 
-    fun save(supplier: Mono<FabricSupplier>): Mono<Void> = supplierRepository.save(supplier)
-
+    fun saveSupplier(supplier: FabricSupplier) {
+        supplierRepository.save(supplier)
+    }
 }

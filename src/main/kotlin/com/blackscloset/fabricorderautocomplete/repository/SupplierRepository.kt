@@ -18,16 +18,14 @@ class SupplierRepository(private val reactiveRedisTemplate: ReactiveRedisTemplat
             .flatMap { keys -> reactiveRedisTemplate.opsForValue().multiGet(keys) }
     }
 
-    fun save(fabricSupplier: Mono<FabricSupplier>): Mono<Void> {
-        // 고유키 생성
+    fun save(fabricSupplier: FabricSupplier) {
+        // 고유한 키 생성
         val key = "$redisKeyPrefix:${generateUniqueId()}"
 
-        return fabricSupplier.flatMap { supplier ->
-            // FabricSupplier 객체를 JSON 문자열로 직렬화
-            val json = Json.encodeToString(supplier)
-            reactiveRedisTemplate.opsForValue().set(key, json)
-                .then()
-        }
+        // FabricSupplier 객체를 JSON 문자열로 직렬화
+        val json = Json.encodeToString(fabricSupplier)
+
+        reactiveRedisTemplate.opsForValue().set(key, json).subscribe()
     }
 
     private fun generateUniqueId(): String {
