@@ -42,8 +42,11 @@ dependencies {
 	implementation("com.h2database:h2:2.1.210")
 
 	// TEST
+	testImplementation("io.mockk:mockk:1.12.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
+	testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
+	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:3.0.0")
 }
 
 tasks.withType<KotlinCompile> {

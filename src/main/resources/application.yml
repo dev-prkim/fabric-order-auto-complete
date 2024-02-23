@@ -10,9 +10,8 @@ spring:
       username: black
       password: 1111
       authentication-database: admin
-      auto-index-creation: true
-  r2dbc:
-    initialization-mode: always
+  data.mongodb.auto-index-creation: true
+  r2dbc.initialization-mode: always
 
 logging:
   level:

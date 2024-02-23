@@ -1,0 +1,12 @@
+spring:
+  r2dbc.initialization-mode: always
+  data:
+    mongodb:
+      uri: uri=mongodb://localhost:12345/test
+      database: fms
+  data.mongodb.auto-index-creation: true
+
+logging:
+  level:
+    org.springframework.data.mongodb.core.ReactiveMongoTemplate: DEBUG
+    io.r2dbc: DEBUG

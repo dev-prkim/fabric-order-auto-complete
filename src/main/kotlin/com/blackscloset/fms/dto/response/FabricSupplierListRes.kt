@@ -3,20 +3,9 @@ package com.blackscloset.fms.dto.response
 import com.blackscloset.fms.persistence.entity.FabricSupplier
 
 data class FabricSupplierListRes(
-    val fabricSuppliers: List<FabricSupplierRes> = emptyList()
+    val fabricSuppliers: List<FabricSupplierRes> = emptyList(),
+    val fabricSuppliersCount: Int = 0
 )
 
-fun List<FabricSupplier>.toFabricSupplierListRes() = FabricSupplierListRes(this.map { fabricSupplier ->
-    FabricSupplierRes(
-        fabricSupplier.id,
-        fabricSupplier.name,
-        fabricSupplier.contactType,
-        fabricSupplier.address,
-        fabricSupplier.tel,
-        fabricSupplier.phone,
-        fabricSupplier.description,
-        fabricSupplier.inUse,
-        fabricSupplier.createdAt
-    )
-})
+fun List<FabricSupplierRes>.toFabricSupplierListRes() = FabricSupplierListRes(this, this.size)
 
