@@ -1,3 +1,5 @@
+package com.blackscloset.fms.dto.request
+
 import com.blackscloset.fms.persistence.entity.FabricSupplier
 import com.blackscloset.fms.persistence.type.ContactType
 import jakarta.validation.constraints.NotBlank

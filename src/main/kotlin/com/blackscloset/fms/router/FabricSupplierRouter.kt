@@ -1,6 +1,6 @@
 package com.blackscloset.fms.router
 
-import com.blackscloset.fms.handler.FabricSupplierHandler
+import com.blackscloset.fms.api.FabricSupplierHandler
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.reactive.function.server.coRouter
@@ -13,8 +13,8 @@ class FabricSupplierRouter(private val fabricSupplierHandler: FabricSupplierHand
         coRouter {
             "/api/v1/supplier".nest {
                 listOf(
-                    GET("", fabricSupplierHandler::findAll),
-                    POST("", fabricSupplierHandler::save)
+                    GET("", fabricSupplierHandler::getFabricSuppliers),
+                    POST("", fabricSupplierHandler::createFabricSupplier)
                 )
             }
         }

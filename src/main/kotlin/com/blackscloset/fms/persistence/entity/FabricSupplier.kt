@@ -1,6 +1,7 @@
 package com.blackscloset.fms.persistence.entity
 
-import FabricSupplierRes
+import com.blackscloset.fms.dto.response.FabricSupplierRes
+import com.blackscloset.fms.dto.toFabricSupplierWrapper
 import com.blackscloset.fms.persistence.type.ContactType
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.LastModifiedDate
@@ -22,16 +23,4 @@ data class FabricSupplier(
     @LastModifiedDate
     val updatedAt: Instant = Instant.now(),
     @Field("fabrics") val fabrics: List<Fabric> = listOf()
-) {
-    fun toFabricSupplierRes(): FabricSupplierRes = FabricSupplierRes(
-        id = this.id,
-        name = this.name,
-        contactType = this.contactType,
-        address = this.address,
-        tel = this.tel,
-        phone = this.phone,
-        description = this.description,
-        inUse = this.inUse,
-        createdAt = this.createdAt
-    )
-}
+)

@@ -1,3 +1,5 @@
+package com.blackscloset.fms.dto.response
+
 import com.blackscloset.fms.persistence.entity.FabricSupplier
 
 data class FabricSupplierListRes(
@@ -17,3 +19,4 @@ fun List<FabricSupplier>.toFabricSupplierListRes() = FabricSupplierListRes(this.
         fabricSupplier.createdAt
     )
 })
+

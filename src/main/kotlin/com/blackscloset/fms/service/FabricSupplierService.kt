@@ -1,26 +1,29 @@
 package com.blackscloset.fms.service
 
-import CreateFabricSupplierReq
-import FabricSupplierListRes
-import FabricSupplierRes
+import com.blackscloset.fms.dto.FabricSupplierWrapper
+import com.blackscloset.fms.dto.request.CreateFabricSupplierReq
+import com.blackscloset.fms.dto.response.FabricSupplierListRes
+import com.blackscloset.fms.dto.response.FabricSupplierRes
+import com.blackscloset.fms.dto.response.toFabricSupplierListRes
+import com.blackscloset.fms.dto.response.toFabricSupplierRes
 import com.blackscloset.fms.persistence.entity.FabricSupplier
 import com.blackscloset.fms.persistence.repository.FabricSupplierRepository
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.stereotype.Service
-import toFabricSupplierListRes
+import com.blackscloset.fms.dto.toFabricSupplierWrapper
 import java.util.UUID
 
 @Service
 class FabricSupplierService(private val fabricSupplierRepository: FabricSupplierRepository) {
-    suspend fun findAll(): FabricSupplierListRes = fabricSupplierRepository.findAll()
+    suspend fun getAll(): FabricSupplierListRes = fabricSupplierRepository.findAll()
         .collectList()
         .awaitSingle()
         .toFabricSupplierListRes()
 
-    suspend fun save(request: CreateFabricSupplierReq): FabricSupplierRes {
+    suspend fun create(request: CreateFabricSupplierReq): FabricSupplierRes {
         val id = UUID.randomUUID().toString()
-        val fabricSupplier: FabricSupplier = fabricSupplierRepository.save(request.toEntity(id)).awaitSingle()
-        return fabricSupplier.toFabricSupplierRes()
+        val savedFabricSupplierEntity: FabricSupplier = fabricSupplierRepository.save(request.toEntity(id)).awaitSingle()
+        return savedFabricSupplierEntity.toFabricSupplierRes()
     }
 
 }
