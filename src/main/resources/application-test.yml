@@ -1,10 +1,10 @@
 spring:
   r2dbc.initialization-mode: always
-  data:
-    mongodb:
-      uri: uri=mongodb://localhost:12345/test
-      database: fms
   data.mongodb.auto-index-creation: true
+
+de:
+  flapdoodle:
+    mongodb.embedded.version: 4.0.2
 
 logging:
   level:

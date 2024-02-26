@@ -46,7 +46,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
-	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:3.0.0")
+	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.5.2")
 }
 
 tasks.withType<KotlinCompile> {

@@ -10,10 +10,8 @@ import org.springframework.test.web.reactive.server.WebTestClient
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
-import org.springframework.boot.test.mock.mockito.MockBean
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = ["spring.profiles.active=local"])
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = ["spring.profiles.active=test"])
 class FabricSupplierApiTest(
     @Autowired val webTestClient: WebTestClient,
     @Autowired val fabricSupplierRepository: FabricSupplierRepository
