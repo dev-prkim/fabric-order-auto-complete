@@ -1,8 +1,9 @@
 package com.blackscloset.fms.api
 
+import com.blackscloset.fms.dto.response.FabricSupplierListRes
 import com.blackscloset.fms.persistence.repository.FabricSupplierRepository
 import helpers.FabricSupplierApiSupport
-import helpers.FabricSupplierSample
+import helpers.FabricSupplierSamples
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -25,7 +26,7 @@ class FabricSupplierApiTest(
 
     @Test
     fun `test create fabric supplier`() {
-        val createRequest = FabricSupplierSample.sampleCreateFabricSupplierRequest()
+        val createRequest = FabricSupplierSamples.sampleCreateFabricSupplierRequest(1)
 
         val fabricSupplier = fabricSupplierApi.createFabricSupplier(createRequest)
 
@@ -41,5 +42,19 @@ class FabricSupplierApiTest(
             .hasSize(1)
             .contains(fabricSupplier.name)
     }
+    @Test
+    fun `find using fabric suppliers`() {
+        val createReq1 = FabricSupplierSamples.sampleCreateFabricSupplierRequest(1)
+        val createReq2 = FabricSupplierSamples.sampleCreateFabricSupplierRequest(2)
+
+        fabricSupplierApi.createFabricSupplier(createReq1)
+        fabricSupplierApi.createFabricSupplier(createReq2)
+
+        val result1: FabricSupplierListRes = fabricSupplierApi.findFabricSuppliers()
+
+        assertThat(result1.fabricSuppliersCount).isEqualTo(2)
+
+    }
+
 
 }

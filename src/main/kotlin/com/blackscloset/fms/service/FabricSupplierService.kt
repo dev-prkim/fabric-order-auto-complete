@@ -17,10 +17,7 @@ import java.util.UUID
 @Service
 class FabricSupplierService(private val fabricSupplierRepository: FabricSupplierRepository) {
     suspend fun findFabricSuppliers(): FabricSupplierListRes {
-        val inUse: Boolean = true
-        return fabricSupplierRepository.findFilteredBy(
-            inUse
-        ).asFlow()
+        return fabricSupplierRepository.findFilteredBy(true).asFlow()
             .map { it.toFabricSupplierRes() }
             .toList()
             .toFabricSupplierListRes()
