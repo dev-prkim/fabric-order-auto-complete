@@ -9,7 +9,6 @@ class Fabric(
     val title: String,
     val cost: BigDecimal = BigDecimal.ZERO,
     val description: String,
-    val inUse: Boolean = true,
     val isAvailable: Boolean = true,
     val createdAt: Instant = Instant.now(),
     @LastModifiedDate

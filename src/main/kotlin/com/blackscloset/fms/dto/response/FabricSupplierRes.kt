@@ -12,7 +12,6 @@ data class FabricSupplierRes(
     val tel: String?,
     val phone: String,
     val description: String?,
-    val inUse: Boolean,
     val createdAt: Instant
 )
 
@@ -24,6 +23,5 @@ fun FabricSupplier.toFabricSupplierRes() = FabricSupplierRes(
     tel = this.tel,
     phone = this.phone,
     description = this.description,
-    inUse = this.inUse,
     createdAt = this.createdAt
 )

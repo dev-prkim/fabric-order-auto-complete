@@ -18,7 +18,6 @@ data class FabricSupplier(
     val tel: String?,
     val phone: String,
     val description: String?,
-    val inUse: Boolean = true,
     val createdAt: Instant = Instant.now(),
     @LastModifiedDate
     val updatedAt: Instant = Instant.now(),
