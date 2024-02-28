@@ -6,6 +6,7 @@ import org.springframework.boot.web.reactive.error.ErrorAttributes
 import org.springframework.context.ApplicationContext
 import org.springframework.core.annotation.Order
 import org.springframework.http.HttpStatus
+import org.springframework.http.ProblemDetail
 import org.springframework.http.codec.ServerCodecConfigurer
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.RequestPredicates
@@ -36,24 +37,19 @@ class GlobalExceptionHandler(
     fun handleError(request: ServerRequest): Mono<ServerResponse> {
         return when (val throwable = super.getError(request)) {
             is GlobalException -> {
-                ServerResponse.status(throwable.globalErrorCode.status)
-                    .bodyValue(
-                        GlobalErrorResponse(
-                            errorCode = throwable.globalErrorCode.errorCode,
-                            errorMessage = throwable.globalErrorCode.errorMessage,
-                            details = throwable.details
-                        )
-                    )
+                val problemDetail: ProblemDetail = ProblemDetail.forStatusAndDetail(throwable.globalErrorCode.status, throwable.details)
+                problemDetail.setProperty("code", throwable.globalErrorCode.code)
+                problemDetail.setProperty("instance", request.path())
+
+                ServerResponse.status(throwable.globalErrorCode.status).bodyValue(problemDetail)
             }
+
             else -> {
-                ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .bodyValue(
-                        GlobalErrorResponse(
-                            errorCode = GlobalErrorCode.UNCHECKED_ERR.errorCode,
-                            errorMessage = GlobalErrorCode.UNCHECKED_ERR.errorCode,
-                            details = ""
-                        )
-                    )
+                val problemDetail: ProblemDetail = ProblemDetail.forStatusAndDetail(GlobalErrorCode.UNCHECKED_ERR.status, throwable.message ?: "Server Error")
+                problemDetail.setProperty("code", GlobalErrorCode.UNCHECKED_ERR.code)
+                problemDetail.setProperty("instance", request.path())
+
+                ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).bodyValue(problemDetail)
             }
         }
     }

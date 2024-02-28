@@ -36,11 +36,11 @@ class FabricSupplierService(private val fabricSupplierRepository: FabricSupplier
 
     private suspend fun validDuplicationSupplierName(name: String) {
         // TODO duplication check
-        throw GlobalException(GlobalErrorCode.DUPLICATE_NAME, "${name} 은/는 이미 사용중인 이름 입니다.")
+        throw GlobalException(GlobalErrorCode.DUPLICATE_NAME, "The name [${name}] is already in use.")
     }
 
     private suspend fun validDuplicationSupplierPhone(phone: String) {
         // TODO duplication check
-        throw GlobalException(GlobalErrorCode.DUPLICATE_PHONE, "${phone} 은/는 이미 사용중인 핸드폰번호 입니다.")
+        throw GlobalException(GlobalErrorCode.DUPLICATE_PHONE, "The phone number [${phone}] is already in use.")
     }
 }
